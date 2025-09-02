@@ -774,7 +774,16 @@
         const timezoneInfo = getLocalTimezoneInfo()
 
         // 更新第一个本地时间显示项 (完整时间)
-        const localTimeFull = date.toISOString().replace('T', ' ').substring(0, 19)
+        // 使用toLocaleString来正确显示本地时间
+        const localTimeFull = date.toLocaleString('zh-CN', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).replace(/\//g, '-');
         document.getElementById('local-time-full').textContent = localTimeFull
         document.getElementById('copy-local-full').setAttribute('data-copy', localTimeFull)
         document.getElementById(
@@ -782,7 +791,11 @@
         ).textContent = `${timezoneInfo.utcOffset} ${timezoneInfo.name}(本地时间)`
 
         // 更新第二个本地时间显示项 (仅日期)
-        const localTimeDate = date.toISOString().substring(0, 10)
+        const localTimeDate = date.toLocaleDateString('zh-CN', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        }).replace(/\//g, '-');
         document.getElementById('local-time-date').textContent = localTimeDate
         document.getElementById('copy-local-date').setAttribute('data-copy', localTimeDate)
         document.getElementById(
