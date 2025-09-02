@@ -423,7 +423,9 @@
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
-            <span class="text-gray-600 text-sm">UTC+8:00 中国标准时间、新加坡时间、澳大利亚西部标准时间、香港时间、菲律宾时间</span>
+            <span class="text-gray-600 text-sm"
+              >UTC+8:00 中国标准时间、新加坡时间、澳大利亚西部标准时间、香港时间、菲律宾时间</span
+            >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="480">-</div>
           </div>
           <button
@@ -620,26 +622,26 @@
       // Update timestamps in real-time (optional enhancement)
       function updateTimestamps(timestamp) {
         // Parse different timestamp formats
-        let ts = parseTimestamp(timestamp);
-        if (isNaN(ts)) return;
+        let ts = parseTimestamp(timestamp)
+        if (isNaN(ts)) return
 
-        const date = new Date(ts);
+        const date = new Date(ts)
 
         // Update display elements
-        const utcTime = date.toISOString().replace('T', ' ').substring(0, 19);
-        document.getElementById('utc-time').textContent = utcTime;
+        const utcTime = date.toISOString().replace('T', ' ').substring(0, 19)
+        document.getElementById('utc-time').textContent = utcTime
 
         // 更新时间戳显示
-        const timestampInSeconds = Math.floor(ts / 1000);
-        document.getElementById('timestamp-seconds').textContent = timestampInSeconds;
-        document.getElementById('copy-timestamp-seconds').setAttribute('data-copy', timestampInSeconds);
-        
-        const timestampInMilliseconds = ts;
-        document.getElementById('timestamp-milliseconds').textContent = timestampInMilliseconds;
-        document.getElementById('copy-timestamp-milliseconds').setAttribute('data-copy', timestampInMilliseconds);
+        const timestampInSeconds = Math.floor(ts / 1000)
+        document.getElementById('timestamp-seconds').textContent = timestampInSeconds
+        document.getElementById('copy-timestamp-seconds').setAttribute('data-copy', timestampInSeconds)
+
+        const timestampInMilliseconds = ts
+        document.getElementById('timestamp-milliseconds').textContent = timestampInMilliseconds
+        document.getElementById('copy-timestamp-milliseconds').setAttribute('data-copy', timestampInMilliseconds)
 
         // 更新本地时间显示
-        updateLocalTimeDisplay(timestamp);
+        updateLocalTimeDisplay(timestamp)
 
         // For now, we'll just update the UTC time
         // In a full implementation, we'd update all time formats
@@ -648,52 +650,52 @@
       // 解析多种时间格式
       function parseTimestamp(input) {
         // 确保输入是字符串类型
-        input = String(input).trim();
-        
+        input = String(input).trim()
+
         // 如果是空值，返回当前时间
         if (!input) {
-            return Date.now();
+          return Date.now()
         }
-        
+
         // 检查是否为纯数字（时间戳）
         if (/^\d+$/.test(input)) {
-            const num = parseInt(input, 10);
-            // 判断是秒还是毫秒
-            if (num < 10000000000) {
-                // 秒级时间戳
-                return num * 1000;
-            } else {
-                // 毫秒级时间戳
-                return num;
-            }
+          const num = parseInt(input, 10)
+          // 判断是秒还是毫秒
+          if (num < 10000000000) {
+            // 秒级时间戳
+            return num * 1000
+          } else {
+            // 毫秒级时间戳
+            return num
+          }
         }
-        
+
         // 检查 "YYYY-MM-DD HH:mm:ss" 格式
-        const fullDateTimeRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
+        const fullDateTimeRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/
         if (fullDateTimeRegex.test(input)) {
-            return new Date(input).getTime();
+          return new Date(input).getTime()
         }
-        
+
         // 检查 "YYYY-MM-DD HH:mm" 格式
-        const dateTimeNoSecondsRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
+        const dateTimeNoSecondsRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/
         if (dateTimeNoSecondsRegex.test(input)) {
-            return new Date(input + ":00").getTime();
+          return new Date(input + ':00').getTime()
         }
-        
+
         // 检查 "YYYY-MM-DD HH" 格式
-        const dateTimeNoMinutesRegex = /^\d{4}-\d{2}-\d{2} \d{2}$/;
+        const dateTimeNoMinutesRegex = /^\d{4}-\d{2}-\d{2} \d{2}$/
         if (dateTimeNoMinutesRegex.test(input)) {
-            return new Date(input + ":00:00").getTime();
+          return new Date(input + ':00:00').getTime()
         }
-        
+
         // 检查 "YYYY-MM-DD" 格式
-        const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
+        const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/
         if (dateOnlyRegex.test(input)) {
-            return new Date(input + " 00:00:00").getTime();
+          return new Date(input + ' 00:00:00').getTime()
         }
-        
+
         // 如果以上格式都不匹配，返回NaN
-        return NaN;
+        return NaN
       }
 
       // 获取本地时区信息
@@ -775,15 +777,17 @@
 
         // 更新第一个本地时间显示项 (完整时间)
         // 使用toLocaleString来正确显示本地时间
-        const localTimeFull = date.toLocaleString('zh-CN', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false
-        }).replace(/\//g, '-');
+        const localTimeFull = date
+          .toLocaleString('zh-CN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+          })
+          .replace(/\//g, '-')
         document.getElementById('local-time-full').textContent = localTimeFull
         document.getElementById('copy-local-full').setAttribute('data-copy', localTimeFull)
         document.getElementById(
@@ -791,11 +795,13 @@
         ).textContent = `${timezoneInfo.utcOffset} ${timezoneInfo.name}(本地时间)`
 
         // 更新第二个本地时间显示项 (仅日期)
-        const localTimeDate = date.toLocaleDateString('zh-CN', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
-        }).replace(/\//g, '-');
+        const localTimeDate = date
+          .toLocaleDateString('zh-CN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          })
+          .replace(/\//g, '-')
         document.getElementById('local-time-date').textContent = localTimeDate
         document.getElementById('copy-local-date').setAttribute('data-copy', localTimeDate)
         document.getElementById(
