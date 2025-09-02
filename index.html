@@ -622,26 +622,25 @@
       // Update timestamps in real-time (optional enhancement)
       function updateTimestamps(timestamp) {
         // Parse different timestamp formats
-        let ts = parseTimestamp(timestamp)
-        if (isNaN(ts)) return
-
-        const date = new Date(ts)
+        let date = parseTimestamp(timestamp)
+        if (isNaN(date.getTime())) return
 
         // Update display elements
         const utcTime = date.toISOString().replace('T', ' ').substring(0, 19)
         document.getElementById('utc-time').textContent = utcTime
 
         // 更新时间戳显示
-        const timestampInSeconds = Math.floor(ts / 1000)
+        const timestampInSeconds = Math.floor(date.getTime() / 1000)
         document.getElementById('timestamp-seconds').textContent = timestampInSeconds
         document.getElementById('copy-timestamp-seconds').setAttribute('data-copy', timestampInSeconds)
 
-        const timestampInMilliseconds = ts
+        const timestampInMilliseconds = date.getTime()
+        console.log(date, timestampInMilliseconds, date.getTime())
         document.getElementById('timestamp-milliseconds').textContent = timestampInMilliseconds
         document.getElementById('copy-timestamp-milliseconds').setAttribute('data-copy', timestampInMilliseconds)
 
         // 更新本地时间显示
-        updateLocalTimeDisplay(timestamp)
+        updateLocalTimeDisplay(date.getTime())
 
         // For now, we'll just update the UTC time
         // In a full implementation, we'd update all time formats
@@ -654,7 +653,7 @@
 
         // 如果是空值，返回当前时间
         if (!input) {
-          return Date.now()
+          return new Date()
         }
 
         // 检查是否为纯数字（时间戳）
@@ -663,39 +662,14 @@
           // 判断是秒还是毫秒
           if (num < 10000000000) {
             // 秒级时间戳
-            return num * 1000
+            return new Date(num * 1000)
           } else {
             // 毫秒级时间戳
-            return num
+            return new Date(num)
           }
         }
 
-        // 检查 "YYYY-MM-DD HH:mm:ss" 格式
-        const fullDateTimeRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/
-        if (fullDateTimeRegex.test(input)) {
-          return new Date(input).getTime()
-        }
-
-        // 检查 "YYYY-MM-DD HH:mm" 格式
-        const dateTimeNoSecondsRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/
-        if (dateTimeNoSecondsRegex.test(input)) {
-          return new Date(input + ':00').getTime()
-        }
-
-        // 检查 "YYYY-MM-DD HH" 格式
-        const dateTimeNoMinutesRegex = /^\d{4}-\d{2}-\d{2} \d{2}$/
-        if (dateTimeNoMinutesRegex.test(input)) {
-          return new Date(input + ':00:00').getTime()
-        }
-
-        // 检查 "YYYY-MM-DD" 格式
-        const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/
-        if (dateOnlyRegex.test(input)) {
-          return new Date(input + ' 00:00:00').getTime()
-        }
-
-        // 如果以上格式都不匹配，返回NaN
-        return NaN
+        return new Date(input)
       }
 
       // 获取本地时区信息
