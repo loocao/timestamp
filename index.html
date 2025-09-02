@@ -28,24 +28,24 @@
 
         <!-- Time conversion results -->
         <div class="divide-y">
-            <!-- UTC+8 中国标准时间(本地时间) -->
+            <!-- Local time with dynamic timezone -->
             <div class="flex items-center justify-between p-4 hover:bg-gray-50">
                 <div class="flex-1">
-                    <span class="text-gray-600 text-sm">UTC+8 中国标准时间(本地时间)</span>
-                    <div class="text-lg font-mono text-gray-900">2025-09-02 22:34:56</div>
+                    <span class="text-gray-600 text-sm" id="local-timezone-name">本地时间</span>
+                    <div class="text-lg font-mono text-gray-900" id="local-time-full">-</div>
                 </div>
-                <button class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors" data-copy="2025-09-02 22:34:56">
+                <button class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors" data-copy="" id="copy-local-full">
                     复制 +1
                 </button>
             </div>
 
-            <!-- UTC+8 中国标准时间(本地时间), 日期 -->
+            <!-- Local time date with dynamic timezone -->
             <div class="flex items-center justify-between p-4 hover:bg-gray-50">
                 <div class="flex-1">
-                    <span class="text-gray-600 text-sm">UTC+8 中国标准时间(本地时间), 日期</span>
-                    <div class="text-lg font-mono text-gray-900">2025-09-02</div>
+                    <span class="text-gray-600 text-sm" id="local-timezone-name-date">本地时间, 日期</span>
+                    <div class="text-lg font-mono text-gray-900" id="local-time-date">-</div>
                 </div>
-                <button class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors" data-copy="2025-09-02">
+                <button class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors" data-copy="" id="copy-local-date">
                     复制 +2
                 </button>
             </div>
@@ -88,7 +88,7 @@
         <div class="p-4 border-t bg-gray-50 text-right">
             <button id="other-timezones-btn" class="inline-flex items-center text-sm text-gray-600 hover:text-gray-800">
                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c-.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
                 其它时区
@@ -531,8 +531,102 @@
             const utcTime = date.toISOString().replace('T', ' ').substring(0, 19);
             document.getElementById('utc-time').textContent = utcTime;
             
+            // 更新本地时间显示
+            updateLocalTimeDisplay(timestamp);
+            
             // For now, we'll just update the UTC time
             // In a full implementation, we'd update all time formats
+        }
+        
+        // 获取本地时区信息
+        function getLocalTimezoneInfo() {
+            const now = new Date();
+            const timezoneOffset = -now.getTimezoneOffset();
+            const timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            
+            // 中文时区名称映射
+            const timezoneNameMap = {
+                'Asia/Shanghai': '中国标准时间',
+                'Asia/Taipei': '台北时间',
+                'Asia/Hong_Kong': '香港时间',
+                'Asia/Macau': '澳门时间',
+                'Asia/Singapore': '新加坡时间',
+                'Asia/Tokyo': '日本标准时间',
+                'Asia/Seoul': '韩国标准时间',
+                'Australia/Perth': '澳大利亚西部标准时间',
+                'Australia/Darwin': '澳大利亚中部标准时间',
+                'Australia/Adelaide': '澳大利亚中部标准时间',
+                'Australia/Brisbane': '澳大利亚东部标准时间',
+                'Australia/Sydney': '澳大利亚东部标准时间',
+                'Australia/Melbourne': '澳大利亚东部标准时间',
+                'Europe/London': '格林威治标准时间',
+                'Europe/Dublin': '爱尔兰标准时间',
+                'Europe/Paris': '欧洲中部时间',
+                'Europe/Berlin': '欧洲中部时间',
+                'Europe/Rome': '欧洲中部时间',
+                'Europe/Madrid': '欧洲中部时间',
+                'Europe/Amsterdam': '欧洲中部时间',
+                'Europe/Brussels': '欧洲中部时间',
+                'Europe/Athens': '欧洲东部时间',
+                'Europe/Helsinki': '欧洲东部时间',
+                'Europe/Istanbul': '土耳其时间',
+                'America/New_York': '北美东部标准时间',
+                'America/Chicago': '北美中部标准时间',
+                'America/Denver': '山地标准时间',
+                'America/Los_Angeles': '太平洋标准时间',
+                'America/Anchorage': '阿拉斯加标准时间',
+                'Pacific/Honolulu': '夏威夷-阿留申标准时间',
+                'America/Phoenix': '山地标准时间(无夏令时)',
+                'America/Toronto': '北美东部标准时间',
+                'America/Vancouver': '太平洋标准时间',
+                'America/Montreal': '北美东部标准时间',
+                'America/Edmonton': '山地标准时间',
+                'America/Halifax': '大西洋标准时间',
+                'America/St_Johns': '纽芬兰标准时间'
+            };
+            
+            const displayName = timezoneNameMap[timezoneName] || timezoneName;
+            
+            // 计算UTC偏移量
+            const offsetHours = Math.floor(Math.abs(timezoneOffset) / 60);
+            const offsetMinutes = Math.abs(timezoneOffset) % 60;
+            const offsetSign = timezoneOffset >= 0 ? '+' : '-';
+            const utcOffset = `UTC${offsetSign}${offsetHours}:${offsetMinutes.toString().padStart(2, '0')}`;
+            
+            return {
+                offset: timezoneOffset,
+                name: displayName,
+                utcOffset: utcOffset
+            };
+        }
+        
+        // 更新本地时间显示
+        function updateLocalTimeDisplay(timestamp) {
+            // Parse timestamp - could be in seconds or milliseconds
+            let ts = parseInt(timestamp);
+            if (isNaN(ts)) return;
+            
+            // Handle both seconds and milliseconds timestamp formats
+            if (ts < 10000000000) {  // If it's in seconds
+                ts = ts * 1000;
+            }
+            
+            const date = new Date(ts);
+            const timezoneInfo = getLocalTimezoneInfo();
+            
+            // 更新第一个本地时间显示项 (完整时间)
+            const localTimeFull = date.toISOString().replace('T', ' ').substring(0, 19);
+            document.getElementById('local-time-full').textContent = localTimeFull;
+            document.getElementById('copy-local-full').setAttribute('data-copy', localTimeFull);
+            document.getElementById('local-timezone-name').textContent = 
+                `${timezoneInfo.utcOffset} ${timezoneInfo.name}(本地时间)`;
+            
+            // 更新第二个本地时间显示项 (仅日期)
+            const localTimeDate = date.toISOString().substring(0, 10);
+            document.getElementById('local-time-date').textContent = localTimeDate;
+            document.getElementById('copy-local-date').setAttribute('data-copy', localTimeDate);
+            document.getElementById('local-timezone-name-date').textContent = 
+                `${timezoneInfo.utcOffset} ${timezoneInfo.name}(本地时间), 日期`;
         }
         
         // 更新时区时间显示
