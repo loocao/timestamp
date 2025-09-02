@@ -553,18 +553,18 @@
       document.addEventListener('DOMContentLoaded', function () {
         const currentTimeMillis = Date.now()
         document.getElementById('timestamp-input').value = currentTimeMillis
-        updateTimestamps(currentTimeMillis)
-        updateTimezoneTimes(currentTimeMillis)
+
+        // Parse different timestamp formats
+        let date = parseTimestamp(currentTimeMillis)
+        if (isNaN(date.getTime())) return
+
+        updateTimestamps(date)
+        updateTimezoneTimes(date)
 
         // 添加其它时区按钮点击事件
         document.getElementById('other-timezones-btn').addEventListener('click', function () {
           const list = document.getElementById('other-timezones-list')
           list.classList.toggle('hidden')
-
-          // 更新时区时间
-          if (!list.classList.contains('hidden')) {
-            updateTimezoneTimes(document.getElementById('timestamp-input').value)
-          }
         })
       })
 
@@ -572,11 +572,15 @@
       document.getElementById('timestamp-input').addEventListener('input', function () {
         const inputValue = this.value.trim()
         if (inputValue) {
-          updateTimestamps(inputValue)
+          // Parse different timestamp formats
+          let date = parseTimestamp(inputValue)
+          if (isNaN(date.getTime())) return
+
+          updateTimestamps(date)
           // 更新其它时区列表
           const list = document.getElementById('other-timezones-list')
           if (!list.classList.contains('hidden')) {
-            updateTimezoneTimes(inputValue)
+            updateTimezoneTimes(date)
           }
         }
       })
@@ -621,11 +625,7 @@
       })
 
       // Update timestamps in real-time (optional enhancement)
-      function updateTimestamps(timestamp) {
-        // Parse different timestamp formats
-        let date = parseTimestamp(timestamp)
-        if (isNaN(date.getTime())) return
-
+      function updateTimestamps(date) {
         // Update display elements
         const utcTime = date.toISOString().replace('T', ' ').substring(0, 19)
         document.getElementById('utc-time').textContent = utcTime
@@ -637,7 +637,6 @@
         document.getElementById('copy-timestamp-seconds').setAttribute('data-copy', timestampInSeconds)
 
         const timestampInMilliseconds = date.getTime()
-        console.log(date, timestampInMilliseconds, date.getTime())
         document.getElementById('timestamp-milliseconds').textContent = timestampInMilliseconds
         document.getElementById('copy-timestamp-milliseconds').setAttribute('data-copy', timestampInMilliseconds)
 
@@ -786,23 +785,11 @@
       }
 
       // 更新时区时间显示
-      function updateTimezoneTimes(timestamp) {
-        // Parse timestamp - could be in seconds or milliseconds
-        let ts = parseInt(timestamp)
-        if (isNaN(ts)) return
-
-        // Handle both seconds and milliseconds timestamp formats
-        if (ts < 10000000000) {
-          // If it's in seconds
-          ts = ts * 1000
-        }
-
-        const baseDate = new Date(ts)
-
+      function updateTimezoneTimes(date) {
         // 更新所有时区时间
         document.querySelectorAll('.timezone-time').forEach((element) => {
           const offset = parseInt(element.getAttribute('data-offset'))
-          const localDate = new Date(baseDate.getTime() + offset * 60000)
+          const localDate = new Date(date.getTime() + offset * 60000)
           const timeString = localDate.toISOString().replace('T', ' ').substring(0, 19)
           element.textContent = timeString
 
