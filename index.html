@@ -97,7 +97,8 @@
           </div>
           <button
             class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
+            data-copy=""
+            id="copy-utc-time">
             复制
           </button>
         </div>
@@ -628,6 +629,7 @@
         // Update display elements
         const utcTime = date.toISOString().replace('T', ' ').substring(0, 19)
         document.getElementById('utc-time').textContent = utcTime
+        document.getElementById('copy-utc-time').setAttribute('data-copy', utcTime)
 
         // 更新时间戳显示
         const timestampInSeconds = Math.floor(date.getTime() / 1000)
