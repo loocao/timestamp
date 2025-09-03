@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   updateTimestamps(date)
   updateTimezoneTimes(date)
+  
+  // Add copy buttons to other timezones list
+  addCopyButtonsToTimezones()
 
   // Add click event for other timezones button
   document.getElementById('other-timezones-btn').addEventListener('click', function () {
@@ -30,6 +33,26 @@ document.getElementById('timestamp-input').addEventListener('input', function ()
     const list = document.getElementById('other-timezones-list')
     if (!list.classList.contains('hidden')) {
       updateTimezoneTimes(date)
+    }
+  }
+})
+
+// Add click event for other timezones button
+document.getElementById('other-timezones-btn').addEventListener('click', function () {
+  const list = document.getElementById('other-timezones-list')
+  list.classList.toggle('hidden')
+  
+  // If we're showing the list, make sure copy buttons are added
+  if (!list.classList.contains('hidden')) {
+    addCopyButtonsToTimezones();
+    
+    // Update the timestamps to populate the copy buttons with correct data
+    const inputValue = document.getElementById('timestamp-input').value.trim();
+    if (inputValue) {
+      let date = parseTimestamp(inputValue);
+      if (!isNaN(date.getTime())) {
+        updateTimezoneTimes(date);
+      }
     }
   }
 })
@@ -189,8 +212,73 @@ function updateTimezoneTimes(date) {
 
     // Update the corresponding copy button's data-copy attribute
     const copyButton = element.closest('.flex').querySelector('.copy-btn')
-    copyButton.setAttribute('data-copy', timeString)
+    if (copyButton) {
+      copyButton.setAttribute('data-copy', timeString)
+    }
   })
+}
+
+/**
+ * Add copy buttons to timezone list items
+ */
+function addCopyButtonsToTimezones() {
+  // Select all timezone list items that don't already have a copy button
+  const timezoneItems = document.querySelectorAll('#other-timezones-list .flex.items-center:not(:has(.copy-btn))');
+  
+  timezoneItems.forEach(item => {
+    // Create copy button
+    const copyButton = document.createElement('button');
+    copyButton.className = 'copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors';
+    copyButton.textContent = window.i18nMessages.copy || 'Copy';
+    copyButton.setAttribute('data-copy', '');
+    
+    // Append button to the item
+    item.appendChild(copyButton);
+  });
+  
+  // Add event listeners to the new copy buttons
+  document.querySelectorAll('#other-timezones-list .copy-btn').forEach((button) => {
+    // Check if the button already has a click event listener
+    if (!button.hasEventListener) {
+      button.addEventListener('click', async function () {
+        const textToCopy = this.getAttribute('data-copy')
+
+        try {
+          await navigator.clipboard.writeText(textToCopy)
+
+          // Visual feedback
+          const originalText = this.textContent
+          this.classList.add('copied')
+          this.textContent = window.i18nMessages.copied || 'Copied'
+
+          setTimeout(() => {
+            this.classList.remove('copied')
+            this.textContent = originalText
+          }, 2000)
+        } catch (err) {
+          console.error('Failed to copy: ', err)
+          // Fallback for older browsers
+          const textarea = document.createElement('textarea')
+          textarea.value = textToCopy
+          document.body.appendChild(textarea)
+          textarea.select()
+          document.execCommand('copy')
+          document.body.removeChild(textarea)
+
+          const originalText = this.textContent
+          this.classList.add('copied')
+          this.textContent = window.i18nMessages.copied || 'Copied'
+
+          setTimeout(() => {
+            this.classList.remove('copied')
+            this.textContent = originalText
+          }, 2000)
+        }
+      });
+      // Mark that we've added an event listener
+      button.hasEventListener = true;
+    }
+  });
 }
 
 /**

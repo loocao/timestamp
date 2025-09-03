@@ -10,7 +10,14 @@
     <link rel="alternate" hreflang="zh" href="/zh/" />
     <link rel="alternate" hreflang="x-default" href="/" />
     <title>Timestamp Converter</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @layer base {
+        * {
+          border-color: var(--color-gray-200);
+        }
+      }
+    </style>
     <style>
       .copy-btn {
         transition: all 0.2s ease;
@@ -136,154 +143,84 @@
             <span class="text-gray-600 text-sm">UTC-12:00 Baker Island Time (BIT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-720">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-11:00 Samoa Standard Time (SST), Niue Time (NUT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-660">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-10:00 Hawaii-Aleutian Standard Time (HST), Tahiti Time (TAHT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-600">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-9:30 Marquesas Islands Time (MART)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-570">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-9:00 Alaska Standard Time (AKST), Gambier Island Time (GIT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-540">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-8:00 Pacific Standard Time (PST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-480">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-7:00 Mountain Standard Time (MST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-420">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-6:00 Central Standard Time (CST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-360">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-5:00 Eastern Standard Time (EST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-300">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-4:00 Atlantic Standard Time (AST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-240">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-3:30 Newfoundland Standard Time (NST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-210">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-3:00 Argentina Time (ART), Brasília Time (BRT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-180">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-2:00 South Georgia Time (GST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-120">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC-1:00 Azores Time (AZOT), Cape Verde Time (CVT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="-60">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
@@ -292,22 +229,12 @@
             >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="0">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+1:00 Central European Time (CET), West Africa Time (WAT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="60">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
@@ -316,11 +243,6 @@
             >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="120">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
@@ -329,77 +251,42 @@
             >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="180">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+3:30 Iran Standard Time (IRST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="210">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+4:00 Gulf Standard Time (GST), Samara Time (SAMT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="240">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+4:30 Afghanistan Time (AFT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="270">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+5:00 Pakistan Standard Time (PKT), Yekaterinburg Time (YEKT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="300">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+5:30 India Standard Time (IST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="330">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+5:45 Nepal Time (NPT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="345">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
@@ -408,33 +295,18 @@
             >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="360">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+6:30 Myanmar Time (MMT), Cocos Islands Time (CCT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="390">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+7:00 Indochina Time (ICT), Krasnoyarsk Time (KRAT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="420">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
@@ -444,22 +316,12 @@
             >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="480">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+8:45 Australian Central Western Standard Time (ACWST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="525">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
@@ -468,22 +330,12 @@
             >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="540">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+9:30 Australian Central Standard Time (ACST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="570">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
@@ -492,33 +344,18 @@
             >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="600">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+10:30 Lord Howe Standard Time (LHST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="630">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+11:00 Solomon Islands Time (SBT), Magadan Time (MAGT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="660">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
@@ -527,44 +364,24 @@
             >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="720">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+12:45 Chatham Standard Time (CHAST)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="765">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+13:00 Tonga Time (TOT), Phoenix Islands Time (PHOT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="780">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
             <span class="text-gray-600 text-sm">UTC+14:00 Line Islands Time (LINT)</span>
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="840">-</div>
           </div>
-          <button
-            class="copy-btn px-3 py-1 text-xs border border-gray-300 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            data-copy="">
-            Copy
-          </button>
         </div>
       </div>
     </div>
