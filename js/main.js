@@ -129,7 +129,7 @@ function getLocalTimezoneInfo() {
   const timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone
 
   // Use timezone name mapping from i18n messages
-  const timezoneNameMap = window.i18nMessages.timezoneNameMap;
+  const timezoneNameMap = window.i18nMessages.timezoneNameMap
   const displayName = timezoneNameMap[timezoneName] || timezoneName
 
   // Calculate UTC offset
@@ -162,9 +162,7 @@ function updateLocalTimeDisplay(timestamp) {
 
   // Update the first local time display item (full time)
   // Use toLocaleString to correctly display local time
-  const localTimeFull = date
-    .toLocaleString(window.i18nMessages.locale, window.i18nMessages.localTimeFormat)
-    .replace(/\//g, '-')
+  const localTimeFull = formatDateTime(date)
   document.getElementById('local-time-full').textContent = localTimeFull
   document.getElementById('copy-local-full').setAttribute('data-copy', localTimeFull)
   document.getElementById(
@@ -172,9 +170,7 @@ function updateLocalTimeDisplay(timestamp) {
   ).textContent = `${timezoneInfo.utcOffset} ${timezoneInfo.name} (${window.i18nMessages.localTime})`
 
   // Update the second local time display item (date only)
-  const localTimeDate = date
-    .toLocaleDateString(window.i18nMessages.locale, window.i18nMessages.localDateFormat)
-    .replace(/\//g, '-')
+  const localTimeDate = localTimeFull.substring(0, 10)
   document.getElementById('local-time-date').textContent = localTimeDate
   document.getElementById('copy-local-date').setAttribute('data-copy', localTimeDate)
   document.getElementById(
@@ -187,12 +183,28 @@ function updateTimezoneTimes(date) {
   // Update all timezone times
   document.querySelectorAll('.timezone-time').forEach((element) => {
     const offset = parseInt(element.getAttribute('data-offset'))
-    const localDate = new Date(date.getTime() + offset * 60000)
-    const timeString = localDate.toISOString().replace('T', ' ').substring(0, 19)
+
+    const timeString = formatDateTime(date, offset)
     element.textContent = timeString
 
     // Update the corresponding copy button's data-copy attribute
     const copyButton = element.closest('.flex').querySelector('.copy-btn')
     copyButton.setAttribute('data-copy', timeString)
   })
+}
+
+/**
+ * Format a Date object to "YYYY-MM-DD HH:mm:ss" format
+ * @param {Date} date - The Date object to format
+ * @param {number} timezoneOffset - Optional timezone offset in minutes, defaults to local timezone offset
+ * @returns {string} Formatted date string in "YYYY-MM-DD HH:mm:ss" format
+ */
+function formatDateTime(date, timezoneOffset) {
+  // If timezoneOffset is not provided, use the local timezone offset
+  if (timezoneOffset === undefined) {
+    timezoneOffset = -date.getTimezoneOffset()
+  }
+
+  const localDate = new Date(date.getTime() + timezoneOffset * 60000)
+  return localDate.toISOString().replace('T', ' ').substring(0, 19)
 }
