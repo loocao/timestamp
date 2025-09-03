@@ -175,7 +175,7 @@ function updateLocalTimeDisplay(timestamp) {
   document.getElementById('copy-local-date').setAttribute('data-copy', localTimeDate)
   document.getElementById(
     'local-timezone-name-date'
-  ).textContent = `${timezoneInfo.utcOffset} ${timezoneInfo.name} (${window.i18nMessages.localTime}), ${window.i18nMessages.localTimeDate}`
+  ).textContent = `${timezoneInfo.utcOffset} ${timezoneInfo.name} (${window.i18nMessages.localTimeDate})`
 }
 
 // Update timezone times display
