@@ -12,12 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
   
   // Add copy buttons to other timezones list
   addCopyButtonsToTimezones()
-
-  // Add click event for other timezones button
-  document.getElementById('other-timezones-btn').addEventListener('click', function () {
-    const list = document.getElementById('other-timezones-list')
-    list.classList.toggle('hidden')
-  })
 })
 
 // Input change event
