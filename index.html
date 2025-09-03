@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A simple and easy-to-use timestamp converter that supports multiple timezones. Convert between timestamp and readable date time formats instantly." />
+    <meta
+      name="description"
+      content="A simple and easy-to-use timestamp converter that supports multiple timezones. Convert between timestamp and readable date time formats instantly." />
     <link rel="alternate" hreflang="en" href="/" />
     <link rel="alternate" hreflang="zh" href="/zh/" />
     <link rel="alternate" hreflang="x-default" href="/" />
@@ -285,7 +287,9 @@
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
-            <span class="text-gray-600 text-sm">UTC±0:00 Greenwich Mean Time (GMT), Western European Time (WET), Zulu Time (Z)</span>
+            <span class="text-gray-600 text-sm"
+              >UTC±0:00 Greenwich Mean Time (GMT), Western European Time (WET), Zulu Time (Z)</span
+            >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="0">-</div>
           </div>
           <button
@@ -307,7 +311,9 @@
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
-            <span class="text-gray-600 text-sm">UTC+2:00 Eastern European Time (EET), Central Africa Time (CAT), Israel Standard Time (IST)</span>
+            <span class="text-gray-600 text-sm"
+              >UTC+2:00 Eastern European Time (EET), Central Africa Time (CAT), Israel Standard Time (IST)</span
+            >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="120">-</div>
           </div>
           <button
@@ -318,7 +324,9 @@
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
-            <span class="text-gray-600 text-sm">UTC+3:00 Moscow Time (MSK), East Africa Time (EAT), Arabia Standard Time (AST)</span>
+            <span class="text-gray-600 text-sm"
+              >UTC+3:00 Moscow Time (MSK), East Africa Time (EAT), Arabia Standard Time (AST)</span
+            >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="180">-</div>
           </div>
           <button
@@ -395,7 +403,9 @@
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
-            <span class="text-gray-600 text-sm">UTC+6:00 Bangladesh Time (BDT), Bhutan Time (BTT), Omsk Time (OMST)</span>
+            <span class="text-gray-600 text-sm"
+              >UTC+6:00 Bangladesh Time (BDT), Bhutan Time (BTT), Omsk Time (OMST)</span
+            >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="360">-</div>
           </div>
           <button
@@ -428,7 +438,10 @@
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
-            <span class="text-gray-600 text-sm">UTC+8:00 China Standard Time (CST), Singapore Time (SGT), Australian Western Standard Time (AWST), Hong Kong Time (HKT), Philippine Time (PHT)</span>
+            <span class="text-gray-600 text-sm"
+              >UTC+8:00 China Standard Time (CST), Singapore Time (SGT), Australian Western Standard Time (AWST), Hong
+              Kong Time (HKT), Philippine Time (PHT)</span
+            >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="480">-</div>
           </div>
           <button
@@ -450,7 +463,9 @@
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
-            <span class="text-gray-600 text-sm">UTC+9:00 Japan Standard Time (JST), Korea Standard Time (KST), Yakutsk Time (YAKT)</span>
+            <span class="text-gray-600 text-sm"
+              >UTC+9:00 Japan Standard Time (JST), Korea Standard Time (KST), Yakutsk Time (YAKT)</span
+            >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="540">-</div>
           </div>
           <button
@@ -472,7 +487,9 @@
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
-            <span class="text-gray-600 text-sm">UTC+10:00 Australian Eastern Standard Time (AEST), Vladivostok Time (VLAT)</span>
+            <span class="text-gray-600 text-sm"
+              >UTC+10:00 Australian Eastern Standard Time (AEST), Vladivostok Time (VLAT)</span
+            >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="600">-</div>
           </div>
           <button
@@ -505,7 +522,9 @@
         </div>
         <div class="flex items-center justify-between p-4 hover:bg-gray-50 border-b">
           <div class="flex-1">
-            <span class="text-gray-600 text-sm">UTC+12:00 New Zealand Standard Time (NZST), Fiji Time (FJT), Petropavlovsk-Kamchatski Time (PETT)</span>
+            <span class="text-gray-600 text-sm"
+              >UTC+12:00 New Zealand Standard Time (NZST), Fiji Time (FJT), Petropavlovsk-Kamchatski Time (PETT)</span
+            >
             <div class="text-lg font-mono text-gray-900 timezone-time" data-offset="720">-</div>
           </div>
           <button
@@ -551,138 +570,18 @@
     </div>
 
     <script>
-      // Set current timestamp on page load
-      document.addEventListener('DOMContentLoaded', function () {
-        const currentTimeMillis = Date.now()
-        document.getElementById('timestamp-input').value = currentTimeMillis
-
-        // Parse different timestamp formats
-        let date = parseTimestamp(currentTimeMillis)
-        if (isNaN(date.getTime())) return
-
-        updateTimestamps(date)
-        updateTimezoneTimes(date)
-
-        // Add click event for other timezones button
-        document.getElementById('other-timezones-btn').addEventListener('click', function () {
-          const list = document.getElementById('other-timezones-list')
-          list.classList.toggle('hidden')
-        })
-      })
-
-      // Input change event
-      document.getElementById('timestamp-input').addEventListener('input', function () {
-        const inputValue = this.value.trim()
-        if (inputValue) {
-          // Parse different timestamp formats
-          let date = parseTimestamp(inputValue)
-          if (isNaN(date.getTime())) return
-
-          updateTimestamps(date)
-          // Update other timezones list
-          const list = document.getElementById('other-timezones-list')
-          if (!list.classList.contains('hidden')) {
-            updateTimezoneTimes(date)
-          }
-        }
-      })
-
-      // Copy functionality
-      document.querySelectorAll('.copy-btn').forEach((button) => {
-        button.addEventListener('click', async function () {
-          const textToCopy = this.getAttribute('data-copy')
-
-          try {
-            await navigator.clipboard.writeText(textToCopy)
-
-            // Visual feedback
-            const originalText = this.textContent
-            this.classList.add('copied')
-            this.textContent = 'Copied'
-
-            setTimeout(() => {
-              this.classList.remove('copied')
-              this.textContent = originalText
-            }, 2000)
-          } catch (err) {
-            console.error('Failed to copy: ', err)
-            // Fallback for older browsers
-            const textarea = document.createElement('textarea')
-            textarea.value = textToCopy
-            document.body.appendChild(textarea)
-            textarea.select()
-            document.execCommand('copy')
-            document.body.removeChild(textarea)
-
-            const originalText = this.textContent
-            this.classList.add('copied')
-            this.textContent = 'Copied'
-
-            setTimeout(() => {
-              this.classList.remove('copied')
-              this.textContent = originalText
-            }, 2000)
-          }
-        })
-      })
-
-      // Update timestamps in real-time (optional enhancement)
-      function updateTimestamps(date) {
-        // Update display elements
-        const utcTime = date.toISOString().replace('T', ' ').substring(0, 19)
-        document.getElementById('utc-time').textContent = utcTime
-        document.getElementById('copy-utc-time').setAttribute('data-copy', utcTime)
-
-        // Update timestamp display
-        const timestampInSeconds = Math.floor(date.getTime() / 1000)
-        document.getElementById('timestamp-seconds').textContent = timestampInSeconds
-        document.getElementById('copy-timestamp-seconds').setAttribute('data-copy', timestampInSeconds)
-
-        const timestampInMilliseconds = date.getTime()
-        document.getElementById('timestamp-milliseconds').textContent = timestampInMilliseconds
-        document.getElementById('copy-timestamp-milliseconds').setAttribute('data-copy', timestampInMilliseconds)
-
-        // Update local time display
-        updateLocalTimeDisplay(date.getTime())
-
-        // For now, we'll just update the UTC time
-        // In a full implementation, we'd update all time formats
-      }
-
-      // Parse multiple time formats
-      function parseTimestamp(input) {
-        // Ensure input is string type
-        input = String(input).trim()
-
-        // If empty, return current time
-        if (!input) {
-          return new Date()
-        }
-
-        // Check if it's a pure number (timestamp)
-        if (/^\d+$/.test(input)) {
-          const num = parseInt(input, 10)
-          // Determine if it's seconds or milliseconds
-          if (num < 10000000000) {
-            // Second-level timestamp
-            return new Date(num * 1000)
-          } else {
-            // Millisecond-level timestamp
-            return new Date(num)
-          }
-        }
-
-        return new Date(input)
-      }
-
-      // Get local timezone information
-      function getLocalTimezoneInfo() {
-        const now = new Date()
-        const timezoneOffset = -now.getTimezoneOffset()
-        const timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone
-
-        // English timezone name mapping
-        const timezoneNameMap = {
+      // 定义英文国际化消息
+      window.i18nMessages = {
+        copied: 'Copied',
+        localTime: 'Local Time',
+        localTimeDate: 'Local Time, Date',
+        timestampSeconds: 'Timestamp(seconds)',
+        timestampMilliseconds: 'Timestamp(milliseconds)',
+        standardTimeUTC: 'Standard Time(UTC)',
+        otherTimezones: 'Other Timezones',
+        copy: 'Copy',
+        locale: 'en-US',
+        timezoneNameMap: {
           'Asia/Shanghai': 'China Standard Time',
           'Asia/Taipei': 'Taipei Time',
           'Asia/Hong_Kong': 'Hong Kong Time',
@@ -720,86 +619,23 @@
           'America/Edmonton': 'Mountain Standard Time',
           'America/Halifax': 'Atlantic Standard Time',
           'America/St_Johns': 'Newfoundland Standard Time',
-        }
-
-        const displayName = timezoneNameMap[timezoneName] || timezoneName
-
-        // Calculate UTC offset
-        const offsetHours = Math.floor(Math.abs(timezoneOffset) / 60)
-        const offsetMinutes = Math.abs(timezoneOffset) % 60
-        const offsetSign = timezoneOffset >= 0 ? '+' : '-'
-        const utcOffset = `UTC${offsetSign}${offsetHours}:${offsetMinutes.toString().padStart(2, '0')}`
-
-        return {
-          offset: timezoneOffset,
-          name: displayName,
-          utcOffset: utcOffset,
-        }
-      }
-
-      // Update local time display
-      function updateLocalTimeDisplay(timestamp) {
-        // Parse timestamp - could be in seconds or milliseconds
-        let ts = parseInt(timestamp)
-        if (isNaN(ts)) return
-
-        // Handle both seconds and milliseconds timestamp formats
-        if (ts < 10000000000) {
-          // If it's in seconds
-          ts = ts * 1000
-        }
-
-        const date = new Date(ts)
-        const timezoneInfo = getLocalTimezoneInfo()
-
-        // Update the first local time display item (full time)
-        // Use toLocaleString to correctly display local time
-        const localTimeFull = date
-          .toLocaleString('en-US', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false,
-          })
-          .replace(/\//g, '-')
-        document.getElementById('local-time-full').textContent = localTimeFull
-        document.getElementById('copy-local-full').setAttribute('data-copy', localTimeFull)
-        document.getElementById(
-          'local-timezone-name'
-        ).textContent = `${timezoneInfo.utcOffset} ${timezoneInfo.name} (Local Time)`
-
-        // Update the second local time display item (date only)
-        const localTimeDate = date
-          .toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-          })
-          .replace(/\//g, '-')
-        document.getElementById('local-time-date').textContent = localTimeDate
-        document.getElementById('copy-local-date').setAttribute('data-copy', localTimeDate)
-        document.getElementById(
-          'local-timezone-name-date'
-        ).textContent = `${timezoneInfo.utcOffset} ${timezoneInfo.name} (Local Time), Date`
-      }
-
-      // Update timezone times display
-      function updateTimezoneTimes(date) {
-        // Update all timezone times
-        document.querySelectorAll('.timezone-time').forEach((element) => {
-          const offset = parseInt(element.getAttribute('data-offset'))
-          const localDate = new Date(date.getTime() + offset * 60000)
-          const timeString = localDate.toISOString().replace('T', ' ').substring(0, 19)
-          element.textContent = timeString
-
-          // Update the corresponding copy button's data-copy attribute
-          const copyButton = element.closest('.flex').querySelector('.copy-btn')
-          copyButton.setAttribute('data-copy', timeString)
-        })
+        },
+        localTimeFormat: {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        },
+        localDateFormat: {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        },
       }
     </script>
+    <script src="js/main.js"></script>
   </body>
 </html>
